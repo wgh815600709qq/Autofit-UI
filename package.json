@@ -1,17 +1,17 @@
 {
-  "name": "autofix-ui",
+  "name": "Autofit-UI",
   "version": "1.0.0",
-  "description": "A developing UI plugin library, autofix in PC、 Mobile, besides miniProgram (in the future)",
+  "description": "A developing UI plugin library, autofit in PC、 Mobile, besides miniProgram (in the future)",
   "main": "index.js",
   "scripts": {
     "test": "npm run test",
     "start": "npm run dev",
-    "dev": "node build/webpack.dev.config.js",
+    "dev": "webpack-dev-server --config build/webpack.dev.config.js",
     "build": "node build/webpack.pro.config.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wgh815600709qq/autofix-ui.git"
+    "url": "git+https://github.com/wgh815600709qq/autofit-ui.git"
   },
   "keywords": [
     "React",
@@ -20,16 +20,33 @@
   "author": "Johnson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wgh815600709qq/autofix-ui/issues"
+    "url": "https://github.com/wgh815600709qq/autofit-ui/issues"
   },
-  "homepage": "https://github.com/wgh815600709qq/autofix-ui#readme",
+  "homepage": "https://github.com/wgh815600709qq/autofit-ui#readme",
   "dependencies": {
+    "@babel/preset-react": "^7.7.4",
+    "babel-preset-env": "^1.7.0",
     "classnames": "^2.2.6",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.7.0",
+    "html-webpack-plugin": "^3.2.0",
     "less": "^3.10.3",
+    "less-loader": "^5.0.0",
     "mocha": "^6.2.2",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "ts-loader": "^6.2.1",
     "typescript": "^3.7.2",
-    "webpack": "^4.41.2"
+    "url-loader": "^2.3.0",
+    "webpack": "^4.41.2",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-merge": "^4.2.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "webpack-cli": "^3.3.10"
   }
 }
