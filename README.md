@@ -25,3 +25,6 @@ Typescript、  Less、  React、  Mocha、 Wepack、 NodeJs ...etc
 * Unit Test
 * Lint the files
 * Online Examples
+
+> ToDo
+* watch theme dir when change
