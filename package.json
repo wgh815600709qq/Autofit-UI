@@ -6,8 +6,13 @@
   "scripts": {
     "test": "npm run test",
     "start": "npm run dev",
-    "dev": "webpack-dev-server --config build/webpack.dev.config.js",
-    "build": "node build/webpack.pro.config.js"
+    "dev": "gulp dev",
+    "clean-style": "gulp clean_less",
+    "build-devServer": "webpack-dev-server --config build/webpack.dev.config.js",
+    "build": "node build/webpack.pro.config.js",
+    "compile-themeLess": "node script/combine.theme.js",
+    "compile-styleLess": "node script/combine.style.js",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
@@ -28,7 +33,10 @@
     "babel-preset-env": "^1.7.0",
     "classnames": "^2.2.6",
     "css-loader": "^3.2.0",
+    "del": "^5.1.0",
     "eslint": "^6.7.0",
+    "gulp": "^4.0.2",
+    "gulp-util": "^3.0.8",
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
@@ -36,6 +44,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "shelljs": "^0.8.3",
     "style-loader": "^1.0.0",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.2",

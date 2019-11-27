@@ -5,7 +5,7 @@ const baseConfig = require('./webpack.base.config')
 const devConfig = merge(baseConfig, {
     entry: path.resolve(__dirname, '../script/dev-entry.js'),
     output: {
-      path: __dirname,
+      path: path.resolve(__dirname, '../dev-dist'),
       filename: './dev-bundle.js'
     },
     plugins: [
@@ -22,9 +22,7 @@ const devConfig = merge(baseConfig, {
       port: 8889,
       open: false
     },
-    // devtool: '#source-map'
     devtool: 'eval' // faster complie than source-map
-    // mode: 'development'
 })
 
 module.exports = devConfig
