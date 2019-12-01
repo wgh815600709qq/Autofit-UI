@@ -16,7 +16,7 @@ class Button extends React.Component<ButtonProps, ButtonState> {
         size: PropTypes.oneOf(ButtonSize),
         onClick: PropTypes.func,
         className: PropTypes.string,
-        icon: PropTypes.string,
+        icon: PropTypes.string
     }
 
     constructor(props: ButtonProps) {

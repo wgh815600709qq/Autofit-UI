@@ -6,12 +6,10 @@
   "scripts": {
     "test": "npm run test",
     "start": "npm run dev",
-    "dev": "gulp dev",
-    "clean-style": "gulp clean_less",
+    "dev": "concurrently \"supervisor build/dev-server.js\" \"gulp dev\"",
+    "compile-style": "gulp clean_less && gulp compile_less",
     "build-devServer": "webpack-dev-server --config build/webpack.dev.config.js",
     "build": "node build/webpack.pro.config.js",
-    "compile-themeLess": "node script/combine.theme.js",
-    "compile-styleLess": "node script/combine.style.js",
     "watch": "gulp watch"
   },
   "repository": {
@@ -32,9 +30,11 @@
     "@babel/preset-react": "^7.7.4",
     "babel-preset-env": "^1.7.0",
     "classnames": "^2.2.6",
+    "concurrently": "^5.0.0",
     "css-loader": "^3.2.0",
     "del": "^5.1.0",
     "eslint": "^6.7.0",
+    "express": "^4.17.1",
     "gulp": "^4.0.2",
     "gulp-util": "^3.0.8",
     "html-webpack-plugin": "^3.2.0",

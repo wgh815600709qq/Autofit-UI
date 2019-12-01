@@ -1,52 +1,58 @@
-let gulp = require('gulp');
-// let webpack = require('webpack');
-let gutil = require('gulp-util');
+const gulp = require('gulp');
+const webpack = require('webpack');
+const gutil = require('gulp-util');
 const shelljs = require('shelljs');
 const del = require('del');
-
-// webpack console配置
-// let defaultStatsOptions = {
-//   colors: gutil.colors.supportsColor,
-//   chunks: false,
-//   children: false
-// }
-
-// let devConfig = require('./build/webpack.dev.config')
+const merge = require('webpack-merge');
+let devConfig = require('./build/webpack.dev.config');
 
 // 主题样式文件夹的监听
-gulp.task('watch', () => {
-    gutil.log('theme文件夹监听')
-    gulp.watch('theme/*.less', gulp.series('compile_theme'))
+gulp.task('watch', (cb) => {
+    gutil.log(gutil.colors.green('文件夹监听...'))
+    gulp.watch('theme', gulp.series('dev'))
+    gulp.watch('component', gulp.series('dev'))
+    cb()
 })
 
 // 编译主题样式文件
-gulp.task('compile_theme', done => {
-    gutil.log('开始编译主题样式文件')
-    shelljs.exec('npm run compile-themeLess')
-    done()
+gulp.task('compile_theme', (cb) => {
+    gutil.log(gutil.colors.green('编译主题...'))
+    shelljs.exec('node script/combine.theme.js')
+    cb()
 })
 
 // 编译组件样式文件
-gulp.task('compile_style', done => {
-    gutil.log('开始编译组件样式文件')
-    shelljs.exec('npm run compile-styleLess')
-    done()
+gulp.task('compile_style', (cb) => {
+    gutil.log(gutil.colors.green('编译组件样式...'))
+    shelljs.exec('node script/combine.style.js')
+    cb()
 })
 
-gulp.task('compile_less', gulp.series('compile_theme', 'compile_style'))
+gulp.task('compile_less', gulp.parallel('compile_theme', 'compile_style'))
 
-
-
-gulp.task('clean_less', cb => {
+gulp.task('clean_less', (cb) => {
+    gutil.log(gutil.colors.green('清空style...'))
     del(['style/*.less'])
-    gutil.log(gutil.colors.green('清空style样式文件！！！'))
     cb()
 })
-/**
- * 编译开发环境代码
- */
-gulp.task('dev', gulp.series('clean_less','compile_less', 'watch', function(cb) {
+
+gulp.task('buildDev', () => {
+    let config = {
+        mode: 'development'
+    }
     gutil.log('执行webpack编译项目...')
-    shelljs.exec('npm run build-devServer')
-    cb()
-}))
+    webpack(merge(devConfig, config), (err, stats) => {
+        if (err || stats.hasErrors()) {
+            gutil.log(gutil.colors.red('构建失败！！！'))
+        } else {
+            gutil.log(gutil.colors.green('构建成功！！！'))
+        }
+        gutil.log(gutil.colors.green(`Visit localhost:${devConfig.devServer.port}/index.html`))
+    });
+
+})
+
+/**
+ * 编译开发环境代码9*8
+ */
+gulp.task('dev', gulp.series('compile_less', gulp.parallel('watch', 'buildDev')))
