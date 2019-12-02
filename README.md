@@ -18,7 +18,7 @@ Typescript、  Less、  React、  Mocha、 Wepack、 NodeJs ...etc
 > Goal
 
 * Build by the `theme files`
-* Autofix on different platforms
+* Autofix on different platforms ['adaption' + 'query-media']
 * Typescipt in components
 * Auto documents creator
 * MiniProgram-loader
