@@ -2,18 +2,46 @@
  * default theme file
 **/
 
-@theme-color: #2386ee; 
 
+
+/**Color**/
+
+@main-color: #2386ee;
+@secondary-color: #13eefe;
 @border-color: #e6e6e6;
 
-@border: {
-    border-width: 1px;
-    border-style: solid;
-    border-color: @border-color;
-};
-.main-color{
-    color: @theme-color
+/**Border**/
+
+@border-width: 1rem;
+@border-radius: 4rem;
+
+/**Hover**/
+@selected-bgc: yellow;
+@hover-bgc: gray;
+@white: #fff;
+
+/**Font**/
+@default-fontsize: 14rem;
+
+
+
+
+
+.afu-hover{
+    background-color: @hover-bgc;
+    color: @white;
 }
-.primary-color{
-    color: @border-color
+
+.afu-selected{
+    background-color: @selected-bgc;
+    color: @mainColor;
 }
+
+.afu-border{
+    border: @border-width solid @border-color;
+}
+
+.afu-borderRadius{
+    border-radius: @border-radius;
+}
+

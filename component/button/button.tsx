@@ -1,7 +1,8 @@
-import {ButtonType, ButtonSize, ButtonProps, ButtonState} from './api'
-import * as React from 'react'
-import classNames from 'classnames'
-import * as PropTypes from 'prop-types'
+import {ButtonType, ButtonSize, ButtonProps, ButtonState} from './api';
+import * as React from 'react';
+import classNames from 'classnames';
+import * as PropTypes from 'prop-types';
+import {getPreClassname} from '../../tools/getPreClassname'
 class Button extends React.Component<ButtonProps, ButtonState> {
 
     static defaultProps = {
@@ -26,10 +27,11 @@ class Button extends React.Component<ButtonProps, ButtonState> {
     render () {
         let props = this.props
         let classname = classNames({
+            [getPreClassname('btn')]: true,
             [`btn-type-${props.type}`]: true,
             [`btn-size-${props.size}`]: true
         })
-        return <div className={classname}>{this.props.children}</div>
+        return <div className={classname}>{props.children}</div>
     }
 }
 
